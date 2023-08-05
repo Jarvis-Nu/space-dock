@@ -9,6 +9,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 
 export function SiteHeader() {
   return (
+    // eslint-disable-next-line tailwindcss/classnames-order
     <header className="bg-background sticky top-0 z-40 w-full border-b">
       <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
         <MainNav items={siteConfig.mainNav} />
