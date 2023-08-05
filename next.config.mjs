@@ -2,8 +2,7 @@
 const nextConfig = {
   output: "export",
   reactStrictMode: true,
-  // Add basePath
-  basePath: '/github-pages',
+  basePath: '/space-dock',
   webpack: config => {
     config.resolve.fallback = { fs: false, net: false, tls: false };
     config.externals.push('pino-pretty', 'lokijs', 'encoding');
