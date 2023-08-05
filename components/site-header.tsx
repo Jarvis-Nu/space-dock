@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { ConnectKitButton } from "connectkit"
 
 import { siteConfig } from "@/config/site"
 import { buttonVariants } from "@/components/ui/button"
@@ -44,6 +45,8 @@ export function SiteHeader() {
               </div>
             </Link>
             <ThemeToggle />
+
+            <ConnectKitButton />
           </nav>
         </div>
       </div>

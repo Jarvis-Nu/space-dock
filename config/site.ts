@@ -1,9 +1,9 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "Next.js",
+  name: "Space Dock",
   description:
-    "Beautifully designed components built with Radix UI and Tailwind CSS.",
+    "ETHGlobal: Retro PGF - Space Dock is a space for keep track of your impact in the Optimism ecosystem.",
   mainNav: [
     {
       title: "Home",
@@ -11,8 +11,8 @@ export const siteConfig = {
     },
   ],
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/ui",
-    docs: "https://ui.shadcn.com",
+    twitter: "https://twitter.com/daobox_app",
+    github: "https://github.com/DAOBox",
+    docs: "#",
   },
 }
