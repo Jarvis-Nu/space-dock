@@ -11,7 +11,6 @@ import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
-
 // Refactor to allow for dynamic metadata @okhaimie-dev: Currently clashes with server component.
 // export const metadata: Metadata = {
 //   title: {
@@ -47,11 +46,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Providers>
-                <div className="relative flex min-h-screen flex-col">
-                  <SiteHeader />
-                  <div className="flex-1">{children}</div>
-                </div>
-              </Providers>
+              <div className="relative flex min-h-screen flex-col">
+                <SiteHeader />
+                <div className="flex-1">{children}</div>
+              </div>
+            </Providers>
             <TailwindIndicator />
           </ThemeProvider>
         </body>
