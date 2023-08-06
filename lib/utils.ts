@@ -32,6 +32,65 @@ export const users = [
   },
 ]
 
+export const projects = [
+  {
+    key: 1,
+    avatar: "/card_image.png",
+    name: "Trender",
+    description: "Building the next generation of public funded projects.",
+    numberOfAttestations: 23
+  },
+  {
+    key: 2,
+    avatar: "/card_image.png",
+    name: "Trender",
+    description: "Building the next generation of public funded projects.",
+    numberOfAttestations: 23
+  },
+  {
+    key: 3,
+    avatar: "/card_image.png",
+    name: "Trender",
+    description: "Building the next generation of public funded projects.",
+    numberOfAttestations: 23
+  },
+  {
+    key: 4,
+    avatar: "/card_image.png",
+    name: "Trender",
+    description: "Building the next generation of public funded projects.",
+    numberOfAttestations: 23
+  },
+  {
+    key: 5,
+    avatar: "/card_image.png",
+    name: "Trender",
+    description: "Building the next generation of public funded projects.",
+    numberOfAttestations: 23
+  },
+  {
+    key: 6,
+    avatar: "/card_image.png",
+    name: "Trender",
+    description: "Building the next generation of public funded projects.",
+    numberOfAttestations: 23
+  },
+  {
+    key: 7,
+    avatar: "/card_image.png",
+    name: "Trender",
+    description: "Building the next generation of public funded projects.",
+    numberOfAttestations: 23
+  },
+  {
+    key: 8,
+    avatar: "/card_image.png",
+    name: "Trender",
+    description: "Building the next generation of public funded projects.",
+    numberOfAttestations: 23
+  },
+]
+
 export function truncateString(
   inputString: string,
   maxLength: number

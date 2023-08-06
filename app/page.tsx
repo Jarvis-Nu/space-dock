@@ -2,7 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
-import { truncateString, users } from "@/lib/utils";
+import { projects, truncateString, users } from "@/lib/utils";
 import { Search } from "lucide-react";
 import Image from "next/image";
 
@@ -53,24 +53,30 @@ export default function IndexPage() {
               </div>
             </div>
             <TabsContent value="projects">
-              <div className="grid w-full grid-cols-4">
-                <Card className="w-full max-w-xs rounded-xl">
-                  <CardContent className="w-full p-0">
-                    <div className="relative w-full h-48 max-w-xs">
-                      <Image src={"/card_image.png"} layout="fill" alt="Card image" />
-                    </div>
-                  </CardContent>
-                  <CardHeader className="p-2.5">
-                    <CardTitle className="text-xl">Trender</CardTitle>
-                    <CardDescription className="text-base">{truncateString("Building the next generation of public funded projects.", 100)}</CardDescription>
-                  </CardHeader>
-                  <div className="px-2.5">
-                    <div className="w-full h-[1px] bg-lightAsh" />
-                  </div>
-                  <CardFooter className="px-2.5 py-2.5">
-                    <p className="text-lightestAsh"><span className="font-semibold text-darkGray">23</span> Attestations</p>
-                  </CardFooter>
-                </Card>
+              <div className="flex justify-center w-full">
+                <div className="grid gap-8 w-fit sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6">
+                  {
+                    projects.map(project => (
+                      <Card className="w-full max-w-xs rounded-xl" key={project.key}>
+                        <CardContent className="w-full p-0">
+                          <div className="relative w-full h-48 max-w-xs">
+                            <Image src={project.avatar} layout="fill" alt="Card image" />
+                          </div>
+                        </CardContent>
+                        <CardHeader className="p-2.5">
+                          <CardTitle className="text-xl">{project.name}</CardTitle>
+                          <CardDescription className="text-base">{truncateString(project.description, 100)}</CardDescription>
+                        </CardHeader>
+                        <div className="px-2.5">
+                          <div className="w-full h-[1px] bg-lightAsh" />
+                        </div>
+                        <CardFooter className="px-2.5 py-2.5">
+                          <p className="text-lightestAsh"><span className="font-semibold text-darkGray">{project.numberOfAttestations}</span> Attestations</p>
+                        </CardFooter>
+                      </Card>
+                    ))
+                  }
+                </div>
               </div>
             </TabsContent>
             <TabsContent value="individuals">Change your password here.</TabsContent>
