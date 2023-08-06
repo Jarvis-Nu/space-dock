@@ -21,6 +21,8 @@ module.exports = {
         lightPurple: "#5A46A780",
         lightAsh: "#D0D5DD",
         lightestAsh: "#667085",
+        transAsh: "#FBFBFB",
+        lightGray: "#101828",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
