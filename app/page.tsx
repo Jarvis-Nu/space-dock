@@ -1,13 +1,14 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { users } from "@/lib/utils";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { truncateString, users } from "@/lib/utils";
 import { Search } from "lucide-react";
 import Image from "next/image";
 
 export default function IndexPage() {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full max-w-6xl px-4 space-y-20 md:-mt-10 sm:px-0">
+    <div className="flex flex-col items-center justify-center w-full h-full max-w-6xl px-4 space-y-20 sm:px-0">
       {/* Hero */}
       <div className="flex flex-col items-center justify-center w-full max-w-xl space-y-5">
         <Badge className="bg-purple hover:bg-purple">ETH Global Hackathon - Superhack 2023</Badge>
@@ -53,7 +54,23 @@ export default function IndexPage() {
             </div>
             <TabsContent value="projects">
               <div className="grid w-full grid-cols-4">
-
+                <Card className="w-full max-w-xs rounded-xl">
+                  <CardContent className="w-full p-0">
+                    <div className="relative w-full h-48 max-w-xs">
+                      <Image src={"/card_image.png"} layout="fill" alt="Card image" />
+                    </div>
+                  </CardContent>
+                  <CardHeader className="p-2.5">
+                    <CardTitle className="text-xl">Trender</CardTitle>
+                    <CardDescription className="text-base">{truncateString("Building the next generation of public funded projects.", 100)}</CardDescription>
+                  </CardHeader>
+                  <div className="px-2.5">
+                    <div className="w-full h-[1px] bg-lightAsh" />
+                  </div>
+                  <CardFooter className="px-2.5 py-2.5">
+                    <p className="text-lightestAsh"><span className="font-semibold text-darkGray">23</span> Attestations</p>
+                  </CardFooter>
+                </Card>
               </div>
             </TabsContent>
             <TabsContent value="individuals">Change your password here.</TabsContent>

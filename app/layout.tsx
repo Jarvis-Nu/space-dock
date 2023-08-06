@@ -50,8 +50,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <Providers>
               <div className="relative flex flex-col min-h-screen">
                 <div className="w-full h-full">
-                  <div className="w-full h-screen bg-[url('/gradient.png')] bg-no-repeat bg-center object-cover bg-cover">
-                    <div className="w-full h-full bg-[url('/circles.png')] bg-no-repeat bg-center object-cover bg-cover">
+                  <div className="w-full min-h-screen bg-[url('/gradient.png')] bg-no-repeat bg-center object-cover bg-cover">
+                    <div className="w-full min-h-screen bg-[url('/circles.png')] bg-no-repeat bg-center object-cover bg-cover">
                       <div className="flex justify-center w-full">
                         {/* Navbar */}
                         <nav className="z-10 flex items-center justify-between w-full px-4 pt-5 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl sm:px-0">
@@ -93,7 +93,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                           </div>
                         </div>
                       </div>
-                      <div className="flex justify-center flex-1 w-full h-full">{children}</div>
+                      <div className="flex justify-center flex-1 w-full h-full mt-16 sm:mt-24 md:mt-36">{children}</div>
                     </div>
                   </div>
                 </div>

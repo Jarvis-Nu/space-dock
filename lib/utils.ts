@@ -31,3 +31,15 @@ export const users = [
     icon: "/avatar-three.png",
   },
 ]
+
+export function truncateString(
+  inputString: string,
+  maxLength: number
+): string {
+  if (inputString.length <= maxLength) {
+    return inputString
+  }
+
+  const truncatedString = inputString.slice(0, maxLength)
+  return `${truncatedString}...`
+}
