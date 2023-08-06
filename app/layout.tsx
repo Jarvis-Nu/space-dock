@@ -47,22 +47,26 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <Providers>
               <div className="relative flex flex-col min-h-screen">
                 <div className="w-full h-full">
-                  <div className="w-full h-screen bg-[url('/gradient.png')]">
+                  <div className="w-full h-screen bg-[url('/gradient.png')] bg-no-repeat bg-center object-cover bg-cover">
                     <div className="w-full h-full bg-[url('/circles.png')] bg-no-repeat bg-center object-cover bg-cover">
                       <div className="flex justify-center w-full">
-                        <nav className="flex items-center justify-between w-full max-w-6xl pt-5">
-                          <div className="w-[225px] h-[40px] relative">
-                            <Image src={"/space-dock.png"} layout="fill" alt="Space-Dock logo" />
+                        {/* Navbar */}
+                        <nav className="z-10 flex items-center justify-between w-full max-w-6xl pt-5">
+                          <div className="flex items-center space-x-1">
+                            <div>
+                              <Image src={"/logo.png"} width={50} height={50} alt="Space-Dock logo" />
+                            </div>
+                            <h2 className="text-xl font-medium text-dark">Space Dock</h2>
                           </div>
                           <div className="flex items-center space-x-10">
-                            <div className="text-xl font-medium text-dark">
+                            <div className="text-xl font-medium text-dark hover:cursor-pointer">
                               <Link href={"/"}>Mission</Link>
                             </div>
                             <div className="text-xl font-medium text-dark">
                               <Link href={"/"}>Community</Link>
                             </div>
                             <div>
-                              <ConnectKitButton />
+                              <ConnectKitButton showAvatar={true} />
                             </div>
                           </div>
                         </nav>
