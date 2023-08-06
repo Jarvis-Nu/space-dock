@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.0.4",
     "abitype": "^0.9.6",
     "class-variance-authority": "^0.4.0",
     "clsx": "^1.2.1",
@@ -51,6 +52,6 @@
     "typescript": "^5.0.4"
   },
   "engines": {
-   "node": ">=18.16.0"
+    "node": ">=18.16.0"
   }
 }
