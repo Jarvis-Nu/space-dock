@@ -71,7 +71,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                           </div>
                         </nav>
                       </div>
-                      <div className="flex justify-center w-full h-full">{children}</div>
+                      <div className="flex justify-center flex-1 w-full h-full">{children}</div>
                     </div>
                   </div>
                 </div>
