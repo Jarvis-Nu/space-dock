@@ -39,10 +39,10 @@ export default function IndexPage() {
         <div className="w-full">
           <Tabs defaultValue="projects" className="w-full space-y-5">
             <div className="flex flex-col w-full space-y-2.5 md:justify-between md:flex-row md:items-center md:space-y-0 items-center">
-              <TabsList className="w-full py-5 md:w-fit bg-dark/5">
+              <TabsList className="w-full py-6 md:w-fit bg-dark/5">
                 <TabsTrigger value="projects" className="!text-lightPurple focus:!text-purple data-[state=active]:!text-purple
-                w-full md:w-fit">Projects</TabsTrigger>
-                <TabsTrigger value="individuals" className="!text-lightPurple focus:!text-purple w-full md:w-fit">Individuals</TabsTrigger>
+                w-full md:w-fit py-2.5">Projects</TabsTrigger>
+                <TabsTrigger value="individuals" className="!text-lightPurple focus:!text-purple w-full md:w-fit py-2.5">Individuals</TabsTrigger>
               </TabsList>
               <div className="flex items-center bg-white px-3 py-2.5 space-x-1.5 rounded-lg h-full w-full md:w-80 border border-ash">
                 <div>
@@ -51,7 +51,11 @@ export default function IndexPage() {
                 <input type="text" placeholder="Search" className="w-full outline-none" />
               </div>
             </div>
-            <TabsContent value="projects">Make changes to your account here.</TabsContent>
+            <TabsContent value="projects">
+              <div className="grid w-full grid-cols-4">
+
+              </div>
+            </TabsContent>
             <TabsContent value="individuals">Change your password here.</TabsContent>
           </Tabs>
         </div>
