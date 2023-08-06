@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import Image from "next/image"
 import Link from "next/link"
 import { ConnectKitButton } from "connectkit"
+import { MenuIcon } from "lucide-react"
 
 // Refactor to allow for dynamic metadata @okhaimie-dev: Currently clashes with server component.
 // export const metadata: Metadata = {
@@ -51,7 +52,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     <div className="w-full h-full bg-[url('/circles.png')] bg-no-repeat bg-center object-cover bg-cover">
                       <div className="flex justify-center w-full">
                         {/* Navbar */}
-                        <nav className="z-10 flex items-center justify-between w-full pt-5 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl">
+                        <nav className="z-10 flex items-center justify-between w-full pt-5 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl px-2.5 sm:px-0">
                           <div className="flex items-center space-x-1">
                             <div>
                               <Image src={"/logo.png"} width={50} height={50} alt="Space-Dock logo" />
@@ -69,6 +70,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
                               <ConnectKitButton showAvatar={true} />
                             </div>
                           </div>
+                          <button>
+                            <MenuIcon />
+                          </button>
                         </nav>
                       </div>
                       <div className="flex justify-center flex-1 w-full h-full">{children}</div>
