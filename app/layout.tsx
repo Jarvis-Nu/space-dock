@@ -9,7 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import Image from "next/image"
 import Link from "next/link"
 import { ConnectKitButton } from "connectkit"
-import { MenuIcon } from "lucide-react"
+import { MenuIcon, XIcon } from "lucide-react"
 import { useState } from "react"
 
 // Refactor to allow for dynamic metadata @okhaimie-dev: Currently clashes with server component.
@@ -54,7 +54,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     <div className="w-full h-full bg-[url('/circles.png')] bg-no-repeat bg-center object-cover bg-cover">
                       <div className="flex justify-center w-full">
                         {/* Navbar */}
-                        <nav className="z-10 flex items-center justify-between w-full pt-5 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl px-2.5 sm:px-0">
+                        <nav className="z-10 flex items-center justify-between w-full px-4 pt-5 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl sm:px-0">
                           <div className="flex items-center space-x-1">
                             <div>
                               <Image src={"/logo.png"} width={50} height={50} alt="Space-Dock logo" />
@@ -73,10 +73,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
                             </div>
                           </div>
                           <button className="md:hidden" onClick={() => setOpen(!open)}>
-                            <MenuIcon />
+                            {
+                              open ? <XIcon /> : <MenuIcon />
+                            }
                           </button>
                         </nav>
-                        <div className={`absolute w-full h-56 mt-16 backdrop-blur-md py-2.5 px-3.5 flex flex-col items-center
+                        <div className={`absolute w-full h-56 mt-16 backdrop-blur-md py-2.5 px-4 flex flex-col items-center
                         justify-center md:hidden ${open == false && "hidden"}`}>
                           <div className="flex flex-col items-center space-y-3">
                             <div className="text-xl font-medium text-dark hover:cursor-pointer">
