@@ -10,6 +10,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ConnectKitButton } from "connectkit"
 import { MenuIcon } from "lucide-react"
+import { useState } from "react"
 
 // Refactor to allow for dynamic metadata @okhaimie-dev: Currently clashes with server component.
 // export const metadata: Metadata = {
@@ -34,6 +35,7 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  const [open, setOpen] = useState(false)
   return (
     <>
       <html lang="en" suppressHydrationWarning>
@@ -70,10 +72,24 @@ export default function RootLayout({ children }: RootLayoutProps) {
                               <ConnectKitButton showAvatar={true} />
                             </div>
                           </div>
-                          <button>
+                          <button className="md:hidden" onClick={() => setOpen(!open)}>
                             <MenuIcon />
                           </button>
                         </nav>
+                        <div className={`absolute w-full h-56 mt-16 backdrop-blur-md py-2.5 px-3.5 flex flex-col items-center
+                        justify-center md:hidden ${open == false && "hidden"}`}>
+                          <div className="flex flex-col items-center space-y-3">
+                            <div className="text-xl font-medium text-dark hover:cursor-pointer">
+                              <Link href={"/"}>Mission</Link>
+                            </div>
+                            <div className="text-xl font-medium text-dark">
+                              <Link href={"/"}>Community</Link>
+                            </div>
+                            <div>
+                              <ConnectKitButton showAvatar={true} />
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div className="flex justify-center flex-1 w-full h-full">{children}</div>
                     </div>

@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function IndexPage() {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full max-w-6xl -mt-28 sm:-mt-20 md:-mt-10">
+    <div className="flex flex-col items-center justify-center w-full h-full max-w-6xl -mt-28 sm:-mt-20 md:-mt-10 px-2.5 sm:px-0">
       <div className="flex flex-col items-center justify-center w-full max-w-xl space-y-5">
         <Badge className="bg-purple hover:bg-purple">ETH Global Hackathon - Superhack 2023</Badge>
         <h1 className="text-3xl font-bold text-center sm:text-6xl text-dark">Retroactive Public Good Funding</h1>
