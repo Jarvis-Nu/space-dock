@@ -51,14 +51,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     <div className="w-full h-full bg-[url('/circles.png')] bg-no-repeat bg-center object-cover bg-cover">
                       <div className="flex justify-center w-full">
                         {/* Navbar */}
-                        <nav className="z-10 flex items-center justify-between w-full max-w-6xl pt-5">
+                        <nav className="z-10 flex items-center justify-between w-full pt-5 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl">
                           <div className="flex items-center space-x-1">
                             <div>
                               <Image src={"/logo.png"} width={50} height={50} alt="Space-Dock logo" />
                             </div>
                             <h2 className="text-xl font-medium text-dark">Space Dock</h2>
                           </div>
-                          <div className="flex items-center space-x-10">
+                          <div className="items-center hidden space-x-10 md:flex">
                             <div className="text-xl font-medium text-dark hover:cursor-pointer">
                               <Link href={"/"}>Mission</Link>
                             </div>
