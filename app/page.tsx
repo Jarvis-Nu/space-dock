@@ -34,10 +34,10 @@ export default function IndexPage() {
         </div>
       </div>
       {/* Explore */}
-      <div className="flex flex-col items-center w-full max-w-xl space-y-5 md:max-w-2xl lg:max-w-4xl xl:max-w-6xl">
+      <div className="flex flex-col items-center w-full max-w-xl space-y-10 md:max-w-2xl lg:max-w-4xl xl:max-w-6xl">
         <h2 className="text-3xl font-bold text-center text-darkGray">Explore Public Goods</h2>
         <div className="w-full">
-          <Tabs defaultValue="projects" className="w-full">
+          <Tabs defaultValue="projects" className="w-full space-y-5">
             <div className="flex flex-col w-full space-y-2.5 md:justify-between md:flex-row md:items-center md:space-y-0 items-center">
               <TabsList className="w-full py-5 md:w-fit bg-dark/5">
                 <TabsTrigger value="projects" className="!text-lightPurple focus:!text-purple data-[state=active]:!text-purple
