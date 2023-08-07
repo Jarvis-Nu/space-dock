@@ -1,16 +1,17 @@
 "use client"
 
 import "@/styles/globals.css"
+import { useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
 import { Providers } from "@/context/providers"
+import { Bars4Icon, XMarkIcon } from "@heroicons/react/24/solid"
+import { ConnectKitButton } from "connectkit"
+
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import Image from "next/image"
-import Link from "next/link"
-import { ConnectKitButton } from "connectkit"
-import { MenuIcon, XIcon } from "lucide-react"
-import { useState } from "react"
 
 // Refactor to allow for dynamic metadata @okhaimie-dev: Currently clashes with server component.
 // export const metadata: Metadata = {
@@ -48,20 +49,27 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Providers>
-              <div className="relative flex flex-col min-h-screen">
-                <div className="w-full h-full">
-                  <div className="w-full min-h-screen bg-[url('/gradient.png')] bg-no-repeat bg-center object-cover bg-cover">
-                    <div className="w-full min-h-screen bg-[url('/circles.png')] bg-no-repeat bg-center object-cover bg-cover">
-                      <div className="flex justify-center w-full">
+              <div className="relative flex min-h-screen flex-col">
+                <div className="h-full w-full">
+                  <div className="min-h-screen w-full bg-[url('/gradient.png')] bg-cover bg-center bg-no-repeat object-cover">
+                    <div className="min-h-screen w-full bg-[url('/circles.png')] bg-cover bg-center bg-no-repeat object-cover">
+                      <div className="flex w-full justify-center">
                         {/* Navbar */}
-                        <nav className="z-10 flex items-center justify-between w-full px-4 pt-5 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl sm:px-0">
+                        <nav className="z-10 flex w-full items-center justify-between px-4 pt-5 sm:max-w-xl sm:px-0 md:max-w-2xl lg:max-w-4xl xl:max-w-6xl">
                           <div className="flex items-center space-x-1">
                             <div>
-                              <Image src={"/logo.png"} width={50} height={50} alt="Space-Dock logo" />
+                              <Image
+                                src={"/logo.png"}
+                                width={50}
+                                height={50}
+                                alt="Space-Dock logo"
+                              />
                             </div>
-                            <h2 className="text-xl font-medium text-dark">Space Dock</h2>
+                            <h2 className="text-xl font-medium text-dark">
+                              Space Dock
+                            </h2>
                           </div>
-                          <div className="items-center hidden space-x-10 md:flex">
+                          <div className="hidden items-center space-x-10 md:flex">
                             <div className="text-xl font-medium text-dark hover:cursor-pointer">
                               <Link href={"/"}>Mission</Link>
                             </div>
@@ -72,14 +80,23 @@ export default function RootLayout({ children }: RootLayoutProps) {
                               <ConnectKitButton showAvatar={true} />
                             </div>
                           </div>
-                          <button className="md:hidden" onClick={() => setOpen(!open)}>
-                            {
-                              open ? <XIcon /> : <MenuIcon />
-                            }
+                          <button
+                            className="md:hidden"
+                            onClick={() => setOpen(!open)}
+                          >
+                            {open ? (
+                              <XMarkIcon className="h-6 w-6" />
+                            ) : (
+                              <Bars4Icon className="h-6 w-6" />
+                            )}
                           </button>
                         </nav>
-                        <div className={`absolute w-full h-56 mt-16 backdrop-blur-md py-2.5 px-4 flex flex-col items-center
-                        justify-center md:hidden ${open == false && "hidden"}`}>
+                        <div
+                          className={`absolute mt-16 flex h-56 w-full flex-col items-center justify-center px-4 py-2.5
+                        backdrop-blur-md md:hidden ${
+                          open == false && "hidden"
+                        }`}
+                        >
                           <div className="flex flex-col items-center space-y-3">
                             <div className="text-xl font-medium text-dark hover:cursor-pointer">
                               <Link href={"/"}>Mission</Link>
@@ -93,7 +110,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
                           </div>
                         </div>
                       </div>
-                      <div className="flex justify-center flex-1 w-full h-full mt-16 sm:mt-24 md:mt-36">{children}</div>
+                      <div className="mt-16 flex h-full w-full flex-1 justify-center sm:mt-24 md:mt-36">
+                        {children}
+                      </div>
                     </div>
                   </div>
                 </div>
