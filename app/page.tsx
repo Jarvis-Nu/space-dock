@@ -6,6 +6,7 @@ import { individuals, projects, truncateString, users } from "@/lib/utils";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid"
 import { PlayCircleIcon } from "@heroicons/react/24/outline"
 import Image from "next/image";
+import Link from "next/link";
 
 export default function IndexPage() {
   return (
@@ -110,9 +111,10 @@ export default function IndexPage() {
           </Tabs>
         </div>
       </div>
-      {/* Join us */}
+      {/* Join us & Footer */}
       <div className="flex flex-col items-center w-screen px-4 bg-transAsh">
-        <div className="w-full max-w-xl py-16 space-y-10 md:max-w-2xl lg:max-w-4xl xl:max-w-6xl">
+        {/* Join us */}
+        <div className="w-full max-w-xl pt-16 pb-8 space-y-10 md:max-w-2xl lg:max-w-4xl xl:max-w-6xl">
           <div className="flex flex-col items-center w-full space-y-4">
             <div>
               <Image src={"/logo.png"} width={75} height={75} alt="logo" />
@@ -131,6 +133,20 @@ export default function IndexPage() {
                   </div>
                 </div>
               </Button>
+            </div>
+          </div>
+        </div>
+        {/* Footer */}
+        <div className="w-screen px-4 py-5 lg:px-20 xl:px-24 bg-transAsh">
+          <div className="w-full h-[1px] bg-darkGray/10" />
+          <div className="flex flex-col-reverse items-start justify-between py-5 sm:flex-row sm:items-center sm:justify-between text-lightestGray">
+            <p className="pt-2.5">© 2023 Space Dock. All rights reserved.</p>
+            <div>
+              <div className="space-x-5 mt-2.5">
+                <Link href={"/"}>Terms</Link>
+                <Link href={"/"}>Privacy</Link>
+                <Link href={"/"}>Cookies</Link>
+              </div>
             </div>
           </div>
         </div>
