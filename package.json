@@ -15,7 +15,9 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.0.4",
     "abitype": "^0.9.6",
     "class-variance-authority": "^0.4.0",
     "clsx": "^1.2.1",
@@ -47,10 +49,11 @@
     "eslint-plugin-tailwindcss": "^3.13.0",
     "postcss": "^8.4.24",
     "prettier": "^2.8.8",
+    "prettier-plugin-tailwindcss": "^0.4.1",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.4"
   },
   "engines": {
-   "node": ">=18.16.0"
+    "node": ">=18.16.0"
   }
 }
