@@ -2,21 +2,23 @@
 
 import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
+import { truncateString } from "@/lib/utils";
 import Image from "next/image";
 import { RefObject, useEffect, useRef, useState } from "react";
 
 export default function page() {
-  const ref: RefObject<HTMLInputElement> = useRef(null)
+  const inputRef: RefObject<HTMLInputElement> = useRef(null)
+  const dropRef: RefObject<HTMLInputElement> = useRef(null)
   const [file, setFile] = useState<File>()
   const [message, setMessage] = useState<string>()
   useEffect(() => {
-    ref.current?.addEventListener('dragover', handleDragOver)
-    ref.current?.addEventListener('drop', handleDrop)
+    dropRef.current?.addEventListener('dragover', handleDragOver)
+    dropRef.current?.addEventListener('drop', handleDrop)
     return () => {
-      ref.current?.removeEventListener('dragover', handleDragOver);
-      ref.current?.removeEventListener('drop', handleDrop);
+      dropRef.current?.removeEventListener('dragover', handleDragOver);
+      dropRef.current?.removeEventListener('drop', handleDrop);
     };
-  }, [])
+  }, [file])
   const handleDragOver = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
@@ -29,9 +31,16 @@ export default function page() {
     const { files } = e.dataTransfer
     if (files && files.length) {
       setFile(files[0])
-      setMessage(`${files[0]?.name} selected`)
+      setMessage(`${truncateString(files[0]?.name, 10)} selected`)
     }
   };
+
+  const handleChange = (e: any) => {
+    const { files } = e.target
+    setFile(files[0])
+    setMessage(`${truncateString(files[0]?.name, 10)} selected`)
+  }
+
   return (
     <div>
       <div className="flex flex-col items-center w-full h-full">
@@ -71,8 +80,9 @@ export default function page() {
                         <Image src={"/avatar.png"} width={75} height={75} alt="logo" />
                       </div>
                       <div className="flex-1">
-                        <div className="w-full h-40 bg-white border rounded-md border-lightAsh" ref={ref}>
-                          <div className="flex flex-col items-center justify-center w-full h-full md:p-5 lg:p-0">
+                        <div className="w-full bg-white border rounded-md min-h-40 border-lightAsh hover:cursor-pointer"
+                           ref={dropRef} onClick={() => inputRef.current?.click()}>
+                          <div className="flex flex-col items-center justify-center w-full h-full p-5">
                             <div>
                               <Image src={"/upload.png"} width={60} height={60} alt="upload icon" />
                             </div>
@@ -83,6 +93,18 @@ export default function page() {
                         </div>
                       </div>
                     </div>
+                    <input type="file" className="hidden" onChange={handleChange} ref={inputRef} />
+                  </div>
+                </div>
+                <div className="w-full bg-lightestAsh h-[0.5px]" />
+                <div className="flex flex-col w-full space-y-5 md:flex-row md:space-y-0">
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-darkGray">About project</h3>
+                    <p className="text-lightestAsh">Write a description about this project</p>
+                  </div>
+                  <div className="flex-1">
+                    <textarea placeholder="Building the next generation of public funded projects."
+                      className="w-full h-40 p-2.5 rounded-md border border-lightAsh outline-none" />
                   </div>
                 </div>
               </div>
