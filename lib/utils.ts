@@ -158,3 +158,7 @@ export function truncateString(inputString: string, maxLength: number): string {
   const truncatedString = inputString.slice(0, maxLength)
   return `${truncatedString}...`
 }
+
+
+
+export const types = ["image/png", "image/jpg", "image/jpeg", "image/gif", "image/svg", "image/webp"]

@@ -2,7 +2,7 @@
 
 import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
-import { truncateString } from "@/lib/utils";
+import { truncateString, types } from "@/lib/utils";
 import Image from "next/image";
 import { RefObject, useEffect, useRef, useState } from "react";
 
@@ -29,16 +29,24 @@ export default function page() {
     e.preventDefault();
     e.stopPropagation();
     const { files } = e.dataTransfer
-    if (files && files.length) {
+    if (types.find(type => type == files[0].type)) {
       setFile(files[0])
       setMessage(`${truncateString(files[0]?.name, 10)} selected`)
+    }
+    else {
+      setMessage("Invalid file type")
     }
   };
 
   const handleChange = (e: any) => {
     const { files } = e.target
-    setFile(files[0])
-    setMessage(`${truncateString(files[0]?.name, 10)} selected`)
+    if (types.find(type => type == files[0].type)) {
+      setFile(files[0])
+      setMessage(`${truncateString(files[0]?.name, 10)} selected`)
+    }
+    else {
+      setMessage("Invalid file type")
+    }
   }
 
   return (
@@ -81,13 +89,13 @@ export default function page() {
                       </div>
                       <div className="flex-1">
                         <div className="w-full bg-white border rounded-md min-h-40 border-lightAsh hover:cursor-pointer"
-                           ref={dropRef} onClick={() => inputRef.current?.click()}>
+                          ref={dropRef} onClick={() => inputRef.current?.click()}>
                           <div className="flex flex-col items-center justify-center w-full h-full p-5">
                             <div>
                               <Image src={"/upload.png"} width={60} height={60} alt="upload icon" />
                             </div>
                             <p><span className="font-medium text-purple">Click to upload </span>or drag and drop</p>
-                            <p>SVG, PNG, JPG or GIF (max. 800x400px)</p>
+                            <p>SVG, PNG, JPG, WEBP or GIF</p>
                             <p>{message}</p>
                           </div>
                         </div>
@@ -107,6 +115,7 @@ export default function page() {
                       className="w-full h-40 p-2.5 rounded-md border border-lightAsh outline-none" />
                   </div>
                 </div>
+                <div className="w-full bg-lightestAsh h-[0.5px]" />
               </div>
             </div>
           </div>
