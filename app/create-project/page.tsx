@@ -16,7 +16,7 @@ export default function page() {
   const [message, setMessage] = useState<string>()
   const [status, setStatus] = useState<string>()
   const [name, setName] = useState<string>()
-  const [logo, setLogo] = useState<string>()
+  const [localLogo, setLocalLogo] = useState<string>()
   const [about, setAbout] = useState<string>()
   const [website, setWebsite] = useState<string>()
   const [twitter, setTwitter] = useState<string>()
@@ -43,6 +43,7 @@ export default function page() {
     const { files } = e.dataTransfer
     if (types.find(type => type == files[0].type)) {
       setFile(files[0])
+      setLocalLogo(URL.createObjectURL(files[0]))
       setMessage(`${truncateString(files[0]?.name, 10)} selected`)
     }
     else {
@@ -53,6 +54,7 @@ export default function page() {
   const handleChange = (e: any) => {
     const { files } = e.target
     if (types.find(type => type == files[0].type)) {
+      setLocalLogo(URL.createObjectURL(files[0]))
       setFile(files[0])
       setMessage(`${truncateString(files[0]?.name, 10)} selected`)
     }
@@ -146,7 +148,7 @@ export default function page() {
                     </div>
                     <div className="flex flex-col flex-1 w-full h-full space-y-5 md:p-5 lg:p-0 sm:flex-row sm:space-x-5 sm:space-y-0">
                       <div>
-                        <Image src={"/avatar.png"} width={75} height={75} alt="logo" />
+                        <Image src={localLogo ||  "/avatar.png"} width={75} height={75} alt="logo" />
                       </div>
                       <div className="flex-1">
                         <div className="w-full bg-white border rounded-md min-h-40 border-lightAsh hover:cursor-pointer"
