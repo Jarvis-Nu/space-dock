@@ -4,6 +4,7 @@ import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { truncateString, types } from "@/lib/utils";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { RefObject, useEffect, useRef, useState } from "react";
 
 export default function page() {
@@ -49,6 +50,8 @@ export default function page() {
     }
   }
 
+  const router = useRouter()
+
   return (
     <div>
       <div className="flex flex-col items-center w-full h-full">
@@ -63,8 +66,9 @@ export default function page() {
                     <p className="text-lightestAsh">Input your project information and details here.</p>
                   </div>
                   <div className="space-x-2.5">
-                    <Button className="text-black bg-white border-2 hover:bg-white active:bg-white border-lightAsh">Cancel</Button>
-                    <Button className="text-white bg-purple hover:bg-purple active:bg-purple">Save</Button>
+                    <Button className="text-black bg-white border hover:bg-white active:bg-white border-lightAsh"
+                      onClick={() => router.push("/")}>Cancel</Button>
+                    <Button className="text-white bg-purple hover:bg-purple active:bg-purple">Create project</Button>
                   </div>
                 </div>
                 <div className="w-full bg-lightestAsh h-[0.5px]" />
@@ -152,8 +156,9 @@ export default function page() {
                 </div>
                 <div className="w-full bg-lightestAsh h-[0.5px]" />
                 <div className="space-x-2.5 pb-5 flex justify-end">
-                  <Button className="text-black bg-white border-2 hover:bg-white active:bg-white border-lightAsh">Cancel</Button>
-                  <Button className="text-white bg-purple hover:bg-purple active:bg-purple">Save</Button>
+                    <Button className="text-black bg-white border hover:bg-white active:bg-white border-lightAsh"
+                    onClick={() => router.push("/")}>Cancel</Button>
+                  <Button className="text-white bg-purple hover:bg-purple active:bg-purple">Create project</Button>
                 </div>
               </div>
             </div>
