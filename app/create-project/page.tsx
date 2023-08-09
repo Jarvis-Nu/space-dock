@@ -69,7 +69,7 @@ export default function page() {
                 </div>
                 <div className="w-full bg-lightestAsh h-[0.5px]" />
                 <div className="space-y-5">
-                  <div className="flex flex-col space-y-1.5 sm:flex-row sm:space-y-0 w-full">
+                  <div className="flex flex-col space-y-1.5 sm:flex-row sm:space-y-0 w-full md:space-x-2.5">
                     <div className="flex-1">
                       <h3 className="font-semibold text-darkGray">Project name</h3>
                     </div>
@@ -78,7 +78,7 @@ export default function page() {
                     </div>
                   </div>
                   <div className="w-full bg-lightestAsh h-[0.5px]" />
-                  <div className="flex flex-col w-full space-y-5 md:flex-row md:space-y-0">
+                  <div className="flex flex-col w-full space-y-5 md:flex-row md:space-y-0 md:space-x-2.5">
                     <div className="flex-1">
                       <h3 className="font-semibold text-darkGray">Logo</h3>
                       <p className="text-lightestAsh">This will be displayed on your project dashboard.</p>
@@ -116,6 +116,30 @@ export default function page() {
                   </div>
                 </div>
                 <div className="w-full bg-lightestAsh h-[0.5px]" />
+                <div className="flex flex-col w-full space-y-5 md:flex-row md:space-y-0 md:space-x-2.5">
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-darkGray">Social profiles</h3>
+                    <p className="text-lightestAsh">Input links to your social media, so the public can reach out to you.</p>
+                  </div>
+                  <div className="flex-1 space-y-2.5">
+                    <div className="flex">
+                      <button className="bg-white border border-r-0 rounded-l-lg rounded-r-0 border-lightAsh p-2.5 text-purple w-28">Website</button>
+                      <input type="text" placeholder="https://www.spacedork.xyz" className="w-full border outline-none border-lightAsh px-2.5" />
+                    </div>
+                    <div className="flex">
+                      <button className="bg-white border border-r-0 rounded-l-lg rounded-r-0 border-lightAsh p-2.5 text-purple w-28">Twitter</button>
+                      <input type="text" placeholder="https://twitter.com/spacedork" className="w-full border outline-none border-lightAsh px-2.5" />
+                    </div>
+                    <div className="flex">
+                      <button className="bg-white border border-r-0 rounded-l-lg rounded-r-0 border-lightAsh p-2.5 text-purple w-28">Github</button>
+                      <input type="text" placeholder="https://github.com/spacedork" className="w-full border outline-none border-lightAsh px-2.5" />
+                    </div>
+                    <div className="flex">
+                      <button className="bg-white border border-r-0 rounded-l-lg rounded-r-0 border-lightAsh p-2.5 text-purple w-28">Blog</button>
+                      <input type="text" placeholder="https://medium.com/spacedork" className="w-full border outline-none border-lightAsh px-2.5" />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
