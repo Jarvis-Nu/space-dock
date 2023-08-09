@@ -140,6 +140,21 @@ export default function page() {
                     </div>
                   </div>
                 </div>
+                <div className="w-full bg-lightestAsh h-[0.5px]" />
+                <div className="flex flex-col space-y-1.5 sm:flex-row sm:space-y-0 w-full md:space-x-2.5">
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-darkGray">Project OP Multisig</h3>
+                  </div>
+                  <div className="flex-1">
+                    <input type="text" placeholder="0xd4ebc61981e5B9AB392b68f2638012E2346D534C"
+                      className="w-full border border-lightAsh p-2.5 rounded-md outline-none" />
+                  </div>
+                </div>
+                <div className="w-full bg-lightestAsh h-[0.5px]" />
+                <div className="space-x-2.5 pb-5 flex justify-end">
+                  <Button className="text-black bg-white border-2 hover:bg-white active:bg-white border-lightAsh">Cancel</Button>
+                  <Button className="text-white bg-purple hover:bg-purple active:bg-purple">Save</Button>
+                </div>
               </div>
             </div>
           </div>
