@@ -86,7 +86,7 @@ export default function page() {
                             <div>
                               <Image src={"/upload.png"} width={60} height={60} alt="upload icon" />
                             </div>
-                            <p><span>Click to upload </span>or drag and drop</p>
+                            <p><span className="font-medium text-purple">Click to upload </span>or drag and drop</p>
                             <p>SVG, PNG, JPG or GIF (max. 800x400px)</p>
                             <p>{message}</p>
                           </div>
