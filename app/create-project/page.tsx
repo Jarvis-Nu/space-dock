@@ -75,6 +75,8 @@ export default function page() {
 
         if (createProjectContract) {
 
+          setStatus("Creating project...")
+
           const txn = await createProjectContract.createVenture(
             {
               name: name,
