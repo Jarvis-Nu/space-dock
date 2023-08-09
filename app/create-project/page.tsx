@@ -61,7 +61,7 @@ export default function page() {
                 </div>
                 <div className="w-full bg-lightestAsh h-[0.5px]" />
                 <div className="space-y-5">
-                  <div className="flex w-full">
+                  <div className="flex flex-col space-y-1.5 sm:flex-row sm:space-y-0 w-full">
                     <div className="flex-1">
                       <h3 className="font-semibold text-darkGray">Project name</h3>
                     </div>
