@@ -2,16 +2,27 @@
 
 import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
+import connectProjectContract from "@/lib/createProjectContract";
 import { truncateString, types } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { RefObject, useEffect, useRef, useState } from "react";
+import { Web3Storage } from 'web3.storage'
 
 export default function page() {
   const inputRef: RefObject<HTMLInputElement> = useRef(null)
   const dropRef: RefObject<HTMLInputElement> = useRef(null)
   const [file, setFile] = useState<File>()
   const [message, setMessage] = useState<string>()
+  const [status, setStatus] = useState<string>()
+  const [name, setName] = useState<string>()
+  const [logo, setLogo] = useState<string>()
+  const [about, setAbout] = useState<string>()
+  const [website, setWebsite] = useState<string>()
+  const [twitter, setTwitter] = useState<string>()
+  const [github, setGithub] = useState<string>()
+  const [blog, setBlog] = useState<string>()
+  const [address, setAddress] = useState<string>()
   useEffect(() => {
     dropRef.current?.addEventListener('dragover', handleDragOver)
     dropRef.current?.addEventListener('drop', handleDrop)
@@ -52,6 +63,48 @@ export default function page() {
 
   const router = useRouter()
 
+  const createProject = async () => {
+    setStatus("Uploading data to IPFS...")
+    const client = new Web3Storage({ token: process.env.NEXT_PUBLIC_WEB3STORAGE_API_KEYS || "" })
+    const projectLogo = new Blob([file || ""], { type: file?.type })
+    const files = [new File([projectLogo], file?.name || "", { type: file?.type })]
+    let cid = await client.put(files)
+    if (cid) {
+      try {
+        const createProjectContract = connectProjectContract();
+
+        if (createProjectContract) {
+
+          const txn = await createProjectContract.createVenture(
+            {
+              name: name,
+              hash: cid,
+              about: about,
+              profiles: {
+                website: website,
+                twitter: twitter,
+                github: github,
+                blog: blog
+              },
+              op_multisig: address
+            },
+            { gasLimit: 900000 }
+          );
+          if (txn.hash != "") {
+            setStatus("Project created")
+          }
+        } else {
+          setStatus("Project creation failed")
+        }
+      } catch (error) {
+        setStatus("Project creation failed")
+      }
+    }
+    else {
+      setStatus("Error uploading data to IPFS")
+    }
+  };
+
   return (
     <div>
       <div className="flex flex-col items-center w-full h-full">
@@ -68,7 +121,8 @@ export default function page() {
                   <div className="space-x-2.5">
                     <Button className="text-black bg-white border hover:bg-white active:bg-white border-lightAsh"
                       onClick={() => router.push("/")}>Cancel</Button>
-                    <Button className="text-white bg-purple hover:bg-purple active:bg-purple">Create project</Button>
+                    <Button className="text-white bg-purple hover:bg-purple active:bg-purple"
+                      onClick={createProject}>{status || "Create project"}</Button>
                   </div>
                 </div>
                 <div className="w-full bg-lightestAsh h-[0.5px]" />
@@ -78,7 +132,8 @@ export default function page() {
                       <h3 className="font-semibold text-darkGray">Project name</h3>
                     </div>
                     <div className="flex-1">
-                      <input type="text" placeholder="Space Dock" className="w-full border border-lightAsh p-2.5 rounded-md outline-none" />
+                      <input type="text" placeholder="Space Dock" className="w-full border border-lightAsh p-2.5 rounded-md outline-none"
+                        onChange={e => setName(e.target.value)} />
                     </div>
                   </div>
                   <div className="w-full bg-lightestAsh h-[0.5px]" />
@@ -116,7 +171,8 @@ export default function page() {
                   </div>
                   <div className="flex-1">
                     <textarea placeholder="Building the next generation of public funded projects."
-                      className="w-full h-40 p-2.5 rounded-md border border-lightAsh outline-none" />
+                      className="w-full h-40 p-2.5 rounded-md border border-lightAsh outline-none"
+                      onChange={e => setAbout(e.target.value)} />
                   </div>
                 </div>
                 <div className="w-full bg-lightestAsh h-[0.5px]" />
@@ -128,19 +184,23 @@ export default function page() {
                   <div className="flex-1 space-y-2.5">
                     <div className="flex">
                       <button className="bg-white border border-r-0 rounded-l-lg rounded-r-0 border-lightAsh p-2.5 text-purple w-28">Website</button>
-                      <input type="text" placeholder="https://www.spacedork.xyz" className="w-full border outline-none border-lightAsh px-2.5" />
+                      <input type="text" placeholder="https://www.spacedork.xyz" className="w-full border outline-none border-lightAsh px-2.5"
+                        onChange={e => setWebsite(e.target.value)} />
                     </div>
                     <div className="flex">
                       <button className="bg-white border border-r-0 rounded-l-lg rounded-r-0 border-lightAsh p-2.5 text-purple w-28">Twitter</button>
-                      <input type="text" placeholder="https://twitter.com/spacedork" className="w-full border outline-none border-lightAsh px-2.5" />
+                      <input type="text" placeholder="https://twitter.com/spacedork" className="w-full border outline-none border-lightAsh px-2.5"
+                        onChange={e => setTwitter(e.target.value)} />
                     </div>
                     <div className="flex">
                       <button className="bg-white border border-r-0 rounded-l-lg rounded-r-0 border-lightAsh p-2.5 text-purple w-28">Github</button>
-                      <input type="text" placeholder="https://github.com/spacedork" className="w-full border outline-none border-lightAsh px-2.5" />
+                      <input type="text" placeholder="https://github.com/spacedork" className="w-full border outline-none border-lightAsh px-2.5"
+                        onChange={e => setGithub(e.target.value)} />
                     </div>
                     <div className="flex">
                       <button className="bg-white border border-r-0 rounded-l-lg rounded-r-0 border-lightAsh p-2.5 text-purple w-28">Blog</button>
-                      <input type="text" placeholder="https://medium.com/spacedork" className="w-full border outline-none border-lightAsh px-2.5" />
+                      <input type="text" placeholder="https://medium.com/spacedork" className="w-full border outline-none border-lightAsh px-2.5"
+                        onChange={e => setBlog(e.target.value)} />
                     </div>
                   </div>
                 </div>
@@ -151,14 +211,16 @@ export default function page() {
                   </div>
                   <div className="flex-1">
                     <input type="text" placeholder="0xd4ebc61981e5B9AB392b68f2638012E2346D534C"
-                      className="w-full border border-lightAsh p-2.5 rounded-md outline-none" />
+                      className="w-full border border-lightAsh p-2.5 rounded-md outline-none"
+                      onChange={e => setAddress(e.target.value)} />
                   </div>
                 </div>
                 <div className="w-full bg-lightestAsh h-[0.5px]" />
                 <div className="space-x-2.5 pb-5 flex justify-end">
-                    <Button className="text-black bg-white border hover:bg-white active:bg-white border-lightAsh"
+                  <Button className="text-black bg-white border hover:bg-white active:bg-white border-lightAsh"
                     onClick={() => router.push("/")}>Cancel</Button>
-                  <Button className="text-white bg-purple hover:bg-purple active:bg-purple">Create project</Button>
+                  <Button className="text-white bg-purple hover:bg-purple active:bg-purple"
+                    onClick={createProject}>{status || "Create project"}</Button>
                 </div>
               </div>
             </div>
