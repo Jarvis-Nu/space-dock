@@ -82,7 +82,7 @@ export default function page() {
           const txn = await createProjectContract.createVenture(
             {
               name: name,
-              hash: cid,
+              thumbnailUrl: `https://${cid}.ipfs.w3s.link/${file?.name}`,
               about: about,
               profiles: {
                 website: website,
@@ -102,6 +102,7 @@ export default function page() {
         }
       } catch (error) {
         setStatus("Project creation failed")
+        console.log("error: ", error)
       }
     }
     else {

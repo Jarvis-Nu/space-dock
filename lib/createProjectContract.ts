@@ -2,9 +2,8 @@ import abi from "../abis/abi.json"
 import { ethers } from "ethers"
 
 export default function connectProjectContract() {
-  const contractAddress = "0xB5785e8327Ad3a888248e7F5470c9d85FF37559E";
-  const contractABI = abi.abi;
-  let rsvpContract;
+  const contractAddress = "0x12C4786927D69B28d4f86b55eA983b91fF35A1e4";
+  let createProjectContract;
   try {
     const { ethereum } = window;
 
@@ -12,12 +11,12 @@ export default function connectProjectContract() {
       //checking for eth object in the window
       const provider = new ethers.providers.Web3Provider(ethereum);
       const signer = provider.getSigner();
-      rsvpContract = new ethers.Contract(contractAddress, contractABI, signer);
+      createProjectContract = new ethers.Contract(contractAddress, abi, signer);
     } else {
       console.log("Ethereum object doesn't exist!");
     }
   } catch (error) {
     console.log("ERROR:", error);
   }
-  return rsvpContract;
+  return createProjectContract;
 }
