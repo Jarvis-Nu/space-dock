@@ -3,7 +3,7 @@ import Link from "next/link"
 import { PlayCircleIcon } from "@heroicons/react/24/outline"
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid"
 
-import { individuals, projects, truncateString, users } from "@/lib/utils"
+import { truncateString, users } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -16,8 +16,44 @@ import {
 } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/tabs"
 import Navbar from "@/components/navbar"
+import client from "../apollo-client"
+import { gql } from "@apollo/client"
 
-export default function IndexPage() {
+interface Data {
+  id: string;
+  data_name: string;
+  data_about: string;
+  data_thumbnail_url: string;
+}
+
+export default async function IndexPage() {
+
+  const individuals: { data: { ventureCreateds: Data[] } } = await client.query({
+    query: gql`
+        query Projects {
+            ventureCreateds {
+              id
+              data_name
+              data_about
+              data_thumbnail_url
+            }
+      }
+    `
+  })
+
+  const projects: { data: { ventureCreateds: Data[] } } = await client.query({
+    query: gql`
+        query Projects {
+            ventureCreateds {
+              id
+              data_name
+              data_about
+              data_thumbnail_url
+            }
+      }
+    `
+  })
+
   return (
     <div className="flex flex-col items-center w-full h-full overflow-x-hidden">
       <div className="min-h-screen w-full bg-[url('/gradient.png')] bg-cover bg-center bg-no-repeat object-cover">
@@ -95,15 +131,15 @@ export default function IndexPage() {
                     <TabsContent value="projects">
                       <div className="flex justify-center w-full">
                         <div className="grid gap-8 w-fit sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
-                          {projects.map((project) => (
+                          {projects?.data.ventureCreateds.map((project) => (
                             <Card
                               className="w-full max-w-xs rounded-xl"
-                              key={project.key}
+                              key={project.id}
                             >
                               <CardContent className="w-full p-0">
                                 <div className="relative w-full h-48 max-w-xs">
                                   <Image
-                                    src={project.avatar}
+                                    src={project.data_thumbnail_url}
                                     layout="fill"
                                     alt="Card image"
                                   />
@@ -111,10 +147,10 @@ export default function IndexPage() {
                               </CardContent>
                               <CardHeader className="p-2.5">
                                 <CardTitle className="text-xl">
-                                  {project.name}
+                                  {project.data_name}
                                 </CardTitle>
                                 <CardDescription className="text-base">
-                                  {truncateString(project.description, 100)}
+                                  {truncateString(project.data_about, 100)}
                                 </CardDescription>
                               </CardHeader>
                               <div className="px-2.5">
@@ -123,7 +159,7 @@ export default function IndexPage() {
                               <CardFooter className="p-2.5">
                                 <p className="text-lightestAsh">
                                   <span className="font-semibold text-darkGray">
-                                    {project.numberOfAttestations}
+                                    {"23"}
                                   </span>{" "}
                                   Attestations
                                 </p>
@@ -136,10 +172,10 @@ export default function IndexPage() {
                     <TabsContent value="individuals">
                       <div className="flex justify-center w-full">
                         <div className="grid gap-8 w-fit sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
-                          {individuals.map((individual) => (
+                          {individuals?.map((individual: any) => (
                             <Card
                               className="w-full max-w-xs rounded-xl"
-                              key={individual.key}
+                              key={individual.id}
                             >
                               <CardContent className="w-full p-0">
                                 <div className="relative w-full h-48 max-w-xs">
@@ -164,7 +200,7 @@ export default function IndexPage() {
                               <CardFooter className="p-2.5">
                                 <p className="text-lightestAsh">
                                   <span className="font-semibold text-darkGray">
-                                    {individual.numberOfAttestations}
+                                    {"23"}
                                   </span>{" "}
                                   Attestations
                                 </p>

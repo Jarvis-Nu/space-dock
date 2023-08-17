@@ -7,6 +7,8 @@ import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import { ApolloProvider } from "@apollo/client"
+import client from "@/apollo-client"
 
 // Refactor to allow for dynamic metadata @okhaimie-dev: Currently clashes with server component.
 // export const metadata: Metadata = {
@@ -43,11 +45,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Providers>
-              <div className="relative flex flex-col min-h-screen">
-                <div className="w-full h-full">
-                  {children}
+              <ApolloProvider client={client}>
+                <div className="relative flex flex-col min-h-screen">
+                  <div className="w-full h-full">
+                    {children}
+                  </div>
                 </div>
-              </div>
+              </ApolloProvider>
             </Providers>
             <TailwindIndicator />
           </ThemeProvider>
