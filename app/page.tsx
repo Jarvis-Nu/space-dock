@@ -20,19 +20,15 @@ import client from "../apollo-client"
 import { gql } from "@apollo/client"
 
 interface Data {
-  data: {
-    ventureCreateds: {
-      id: string;
-      data_name: string;
-      data_about: string;
-      data_thumbnail_url: string;
-    }
-  }
+  id: string;
+  data_name: string;
+  data_about: string;
+  data_thumbnail_url: string;
 }
 
 export default async function IndexPage() {
 
-  const individuals: Data[] = await client.query({
+  const individuals = await client.query({
     query: gql`
         query Projects {
             ventureCreateds {
@@ -45,7 +41,7 @@ export default async function IndexPage() {
     `
   })
 
-  const projects: Data[] = await client.query({
+  const projects = await client.query({
     query: gql`
         query Projects {
             ventureCreateds {
@@ -135,7 +131,7 @@ export default async function IndexPage() {
                     <TabsContent value="projects">
                       <div className="flex justify-center w-full">
                         <div className="grid gap-8 w-fit sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
-                          {projects?.data.ventureCreateds.map((project) => (
+                          {projects?.data.ventureCreateds.map((project: Data) => (
                             <Card
                               className="w-full max-w-xs rounded-xl"
                               key={project.id}
@@ -176,7 +172,7 @@ export default async function IndexPage() {
                     <TabsContent value="individuals">
                       <div className="flex justify-center w-full">
                         <div className="grid gap-8 w-fit sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
-                          {individuals?.data.ventureCreateds.map((individual: any) => (
+                          {individuals?.data.ventureCreateds.map((individual: Data) => (
                             <Card
                               className="w-full max-w-xs rounded-xl"
                               key={individual.id}
@@ -184,7 +180,7 @@ export default async function IndexPage() {
                               <CardContent className="w-full p-0">
                                 <div className="relative w-full h-48 max-w-xs">
                                   <Image
-                                    src={individual.avatar}
+                                    src={individual.data_thumbnail_url}
                                     layout="fill"
                                     alt="Card image"
                                   />
@@ -192,10 +188,10 @@ export default async function IndexPage() {
                               </CardContent>
                               <CardHeader className="p-2.5">
                                 <CardTitle className="text-xl">
-                                  {individual.name}
+                                  {individual.data_name}
                                 </CardTitle>
                                 <CardDescription className="text-base">
-                                  {truncateString(individual.description, 100)}
+                                  {truncateString(individual.data_about, 100)}
                                 </CardDescription>
                               </CardHeader>
                               <div className="px-2.5">
