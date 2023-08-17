@@ -19,7 +19,7 @@ import Navbar from "@/components/navbar"
 
 export default function IndexPage() {
   return (
-    <div className="flex flex-col items-center w-full h-full">
+    <div className="flex flex-col items-center w-full h-full overflow-x-hidden">
       <div className="min-h-screen w-full bg-[url('/gradient.png')] bg-cover bg-center bg-no-repeat object-cover">
         <div className="min-h-screen w-full bg-[url('/circles.png')] bg-cover bg-center bg-no-repeat object-cover">
           <Navbar />
