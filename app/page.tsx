@@ -20,15 +20,19 @@ import client from "../apollo-client"
 import { gql } from "@apollo/client"
 
 interface Data {
-  id: string;
-  data_name: string;
-  data_about: string;
-  data_thumbnail_url: string;
+  data: {
+    ventureCreateds: {
+      id: string;
+      data_name: string;
+      data_about: string;
+      data_thumbnail_url: string;
+    }
+  }
 }
 
 export default async function IndexPage() {
 
-  const individuals: { data: { ventureCreateds: Data[] } } = await client.query({
+  const individuals: Data[] = await client.query({
     query: gql`
         query Projects {
             ventureCreateds {
@@ -41,7 +45,7 @@ export default async function IndexPage() {
     `
   })
 
-  const projects: { data: { ventureCreateds: Data[] } } = await client.query({
+  const projects: Data[] = await client.query({
     query: gql`
         query Projects {
             ventureCreateds {
@@ -172,7 +176,7 @@ export default async function IndexPage() {
                     <TabsContent value="individuals">
                       <div className="flex justify-center w-full">
                         <div className="grid gap-8 w-fit sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
-                          {individuals?.map((individual: any) => (
+                          {individuals?.data.ventureCreateds.map((individual: any) => (
                             <Card
                               className="w-full max-w-xs rounded-xl"
                               key={individual.id}
