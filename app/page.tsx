@@ -64,7 +64,7 @@ export default async function IndexPage() {
               {/* Hero */}
               <div className="flex flex-col items-center justify-center w-full max-w-xl space-y-5">
                 <Badge className="bg-purple hover:bg-purple">
-                  ETH Global Hackathon - Superhack 2023
+                  Nights and Weekends - Season 4
                 </Badge>
                 <h1 className="text-3xl font-bold text-center text-dark sm:text-6xl">
                   Retroactive Public Good Funding
